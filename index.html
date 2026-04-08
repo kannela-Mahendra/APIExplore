@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>API Viewer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@700&display=swap" rel="stylesheet"/>
+  
+  <link rel="stylesheet" type="text/css" href="style.css">
+
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>API <span>Viewer</span></h1>
+    <p>Explore data from public APIs</p>
+  </div>
+</header>
+
+<div class="toolbar">
+  <!-- API selector -->
+  <select id="apiSelect" onchange="onApiChange()">
+    <option value="jokes">😂 Jokes</option>
+    <option value="catfacts">🐱 Cat Facts</option>
+  </select>
+
+  <!-- Category filter — shown only for Jokes -->
+  <select id="categoryFilter" style="display:none">
+    <option value="Any">All Categories</option>
+    <option value="Programming">Programming</option>
+    <option value="Misc">Misc</option>
+    <option value="Pun">Pun</option>
+    <option value="Spooky">Spooky</option>
+    <option value="Christmas">Christmas</option>
+  </select>
+
+  <!-- Limit -->
+  <select id="limitSelect">
+    <option value="10">10 items</option>
+    <option value="20">20 items</option>
+    <option value="30">30 items</option>
+  </select>
+
+  <!-- Search -->
+  <input type="text" id="searchInput" placeholder="Search…" oninput="filterCards()"/>
+
+  <button class="btn" id="fetchBtn" onclick="fetchData()">Fetch</button>
+</div>
+
+<div class="stats">
+  <span id="statsText">Select an API and click Fetch.</span>
+</div>
+
+<div class="grid-wrap">
+  <div id="cards"></div>
+</div>
+
+<!-- Modal -->
+<div class="modal-bg" id="modal" onclick="closeModal(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModalDirect()">✕</button>
+    <div class="modal-tag" id="modalTag"></div>
+    <div class="modal-title" id="modalTitle"></div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
